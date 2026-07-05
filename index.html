@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Comeback Block — 9 Weeks to September</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2; --paper-dim:#F1ECE2; --ink:#221D16; --ink-soft:#5C5548; --line:#D8D2C4;
+    --bodypump:#9A2E2E; --bodypump-bg:#F3E4E1;
+    --spin:#2C5F8A; --spin-bg:#E4EBF1;
+    --walk:#5C6B3D; --walk-bg:#EBEEE0;
+    --strength:#B8862F; --strength-bg:#F4EBD9;
+    --rest:#8A8577; --rest-bg:#EFEBE3;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.55;}
+  .wrap{max-width:960px;margin:0 auto;padding:56px 28px 100px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 10px;}
+  h1{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(38px,6vw,64px);line-height:0.98;margin:0 0 14px;}
+  .sub{font-size:17px;color:var(--ink-soft);max-width:580px;margin:0 0 34px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:56px;}
+  .hero-stat{background:var(--paper);padding:20px 18px;}
+  .hero-stat .n{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;}
+  .hero-stat .l{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;}
+  .block-label{font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;font-size:13px;color:var(--ink-soft);border-bottom:2px solid var(--ink);display:inline-block;padding-bottom:4px;margin-bottom:22px;}
+  section{margin-bottom:64px;}
+  .card{background:var(--paper-dim);border:1px solid var(--line);padding:26px 28px;margin-bottom:16px;}
+  .card h3{font-family:'Oswald',sans-serif;font-size:17px;text-transform:uppercase;margin:0 0 10px;}
+  .card p{margin:0;color:var(--ink);}
+  .card p + p{margin-top:10px;}
+  .baseline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:18px 0 0;}
+  .b-item{border-left:3px solid var(--ink); padding-left:12px;}
+  .b-item .v{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;}
+  .b-item .k{font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;}
+  .timeline{position:relative;display:flex;justify-content:space-between;margin:36px 0 8px;padding-top:14px;}
+  .timeline::before{content:"";position:absolute;top:5px;left:0;right:0;height:2px;background:var(--line);}
+  .tick{position:relative;text-align:center;flex:1;}
+  .tick .dot{width:10px;height:10px;border-radius:50%;background:var(--ink-soft);margin:-19px auto 8px;position:relative;}
+  .tick.marker .dot{background:var(--bodypump);width:14px;height:14px;margin-top:-21px;}
+  .tick .wk{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);}
+  .tick .tag{font-size:11px;font-weight:600;margin-top:3px;max-width:80px;margin-left:auto;margin-right:auto;}
+  .week{display:flex;flex-direction:column;gap:14px;}
+  .day{border:1px solid var(--line);padding:20px 22px;background:var(--paper);border-left:6px solid var(--ink-soft);display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;}
+  .day.bodypump{border-left-color:var(--bodypump);background:var(--bodypump-bg);}
+  .day.spin{border-left-color:var(--spin);background:var(--spin-bg);}
+  .day.walk{border-left-color:var(--walk);background:var(--walk-bg);}
+  .day.rest{border-left-color:var(--rest);background:var(--rest-bg);}
+  .day .dname{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:16px;letter-spacing:0.03em;}
+  .day .ddate{font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;margin-top:2px;}
+  .day .dtype{font-size:12px;text-transform:uppercase;letter-spacing:0.04em;font-weight:600;margin-bottom:10px;}
+  .day.bodypump .dtype{color:var(--bodypump);}
+  .day.spin .dtype{color:var(--spin);}
+  .day.walk .dtype{color:var(--walk);}
+  .day.rest .dtype{color:var(--rest);}
+  .day .row{display:flex;justify-content:space-between;font-size:13.5px;padding:5px 0;border-bottom:1px dashed var(--line);}
+  .day .row:last-child{border-bottom:none;}
+  .day .row .k{color:var(--ink-soft);}
+  .day .row .v{font-family:'IBM Plex Mono',monospace;font-weight:600;text-align:right;}
+  .chip{display:inline-block;background:var(--strength-bg);color:var(--strength);border:1px solid var(--strength);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;padding:3px 8px;margin:8px 0 4px;}
+  details{margin-top:8px;}
+  summary{cursor:pointer;font-size:12.5px;color:var(--ink-soft);font-weight:600;}
+  .exlist{margin:8px 0 0;padding-left:18px;}
+  .exlist li{margin-bottom:5px;font-size:13.5px;}
+  .yt-field{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);}
+  .yt-field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);margin-bottom:8px;}
+  .yt-options{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .yt-opt{font-size:13px;}
+  .yt-opt .optnum{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);margin-right:6px;}
+  .yt-opt a{color:var(--ink);text-decoration:none;font-weight:600;}
+  .yt-opt a:hover{text-decoration:underline;}
+  .yt-opt .note{display:block;color:var(--ink-soft);font-size:12px;margin-top:2px;margin-left:44px;}
+  .yt-backups{font-size:11.5px;color:var(--ink-soft);margin-top:10px;}
+  .yt-backups a{color:var(--ink-soft);}
+  table{width:100%;border-collapse:collapse;margin-top:10px;}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:top;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-soft);font-weight:600;}
+  td.mono{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  footer{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+  .streak-stats{display:flex;gap:14px;margin-bottom:20px;}
+  .streak-stat{background:var(--paper-dim);border:1px solid var(--line);padding:14px 20px;flex:1;text-align:center;}
+  .streak-stat .sn{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--bodypump);}
+  .streak-stat .sl{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;}
+  .streak-grid{display:flex;flex-direction:column;gap:5px;}
+  .streak-row{display:flex;align-items:center;gap:5px;}
+  .streak-wklabel{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);width:38px;flex-shrink:0;}
+  .streak-box{width:28px;height:28px;border:1px solid var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);cursor:pointer;flex-shrink:0;user-select:none;}
+  .streak-box:hover{border-color:var(--ink-soft);}
+  .streak-box.checked{background:var(--bodypump);color:var(--paper);border-color:var(--bodypump);}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  @media (max-width:600px){
+    .wrap{padding:32px 16px 60px;}
+    .hero-stats{grid-template-columns:1fr;}
+    .hero-stat{padding:16px 14px;}
+    section{margin-bottom:44px;}
+    .card{padding:20px 18px;}
+    .timeline{flex-wrap:wrap;gap:18px 0;}
+    .timeline::before{display:none;}
+    .day{grid-template-columns:1fr;padding:16px 16px;}
+    .yt-opt .note{margin-left:0;}
+    .streak-box{width:24px;height:24px;font-size:10px;}
+    .streak-wklabel{width:32px;font-size:9.5px;}
+    .streak-stats{flex-direction:column;gap:10px;}
+    th,td{font-size:12px;padding:7px 6px;}
+  }
+  @media (max-width:400px){
+    .streak-box{width:20px;height:20px;font-size:9px;}
+    .streak-wklabel{width:28px;font-size:9px;}
+    .streak-row{gap:3px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="eyebrow">Training Block · 9 Weeks · Ends Early September</p>
+  <h1>The Comeback Block</h1>
+  <p class="sub">A first structured attempt. The goal isn't perfection — it's a plan that survives contact with a real week, built on Body Pump and spin you actually love, walking you're already doing, and numbers pulled straight from your own scan data.</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">~1,800</div><div class="l">kcal / day target</div></div>
+    <div class="hero-stat"><div class="n">120g</div><div class="l">protein / day</div></div>
+    <div class="hero-stat"><div class="n">9</div><div class="l">weeks to event</div></div>
+  </div>
+
+  <section>
+    <p class="block-label">Part 1 — The Why</p>
+    <div class="card">
+      <h3>The Goal</h3>
+      <p>Get out of the hump before your early-September event — not by white-knuckling a crash diet, but by rebuilding a rhythm you already know works for you. Body Pump and spin got you into the best shape of your life once. This block puts them back to work, structured around your actual numbers instead of guesswork.</p>
+    </div>
+    <div class="card">
+      <h3>Starting Point — DEXA Baseline (1/11/26)</h3>
+      <div class="baseline-grid">
+        <div class="b-item"><div class="v">133 lb</div><div class="k">Total Weight</div></div>
+        <div class="b-item"><div class="v">42%</div><div class="k">Body Fat</div></div>
+        <div class="b-item"><div class="v">74 lb</div><div class="k">Lean Mass</div></div>
+        <div class="b-item"><div class="v">1,416</div><div class="k">RMR (kcal)</div></div>
+        <div class="b-item"><div class="v">70 bpm</div><div class="k">Resting HR</div></div>
+        <div class="b-item"><div class="v">0.99 lb</div><div class="k">Visceral Fat</div></div>
+        <div class="b-item"><div class="v">33.1"</div><div class="k">Waist</div></div>
+        <div class="b-item"><div class="v">0.83</div><div class="k">Waist:Hip</div></div>
+      </div>
+      <p style="margin-top:18px;">A 3D body scan around the same period read 35.7% body fat instead of 42% — that's a method difference, not a real change. <strong>DEXA is the tracking baseline for this block</strong>; the two body-fat percentages are never compared against each other.</p>
+    </div>
+    <div class="card">
+      <h3>The Numbers</h3>
+      <p>Daily target: <strong>~1,800 kcal</strong>, protein <strong>~120g/day</strong> — roughly a palm-sized source at each meal plus a snack. That's a ~400 kcal deficit off a <strong>Moderately Active</strong> TDEE of 2,195 kcal — desk job, 3 structured strength/cardio sessions/week (Tue/Thu strength + spin) plus daily walking, matching what's actually confirmed below. At ~1 lb every 8-9 days, that's roughly 7-8 lbs by early September, staying well clear of your 1,416 RMR floor.</p>
+      <p><strong>Tracking:</strong> log loosely weeks 1-2 to calibrate, then plate-method + one weekly weigh-in. Waist check every 2 weeks.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="block-label">Checkpoints</p>
+    <div class="timeline">
+      <div class="tick"><div class="dot"></div><div class="wk">WK 1</div><div class="tag">Calibrate</div></div>
+      <div class="tick marker"><div class="dot"></div><div class="wk">WK 3</div><div class="tag">First trend read</div></div>
+      <div class="tick"><div class="dot"></div><div class="wk">WK 4</div></div>
+      <div class="tick marker"><div class="dot"></div><div class="wk">WK 5-6</div><div class="tag">RHR + waist check</div></div>
+      <div class="tick"><div class="dot"></div><div class="wk">WK 7</div></div>
+      <div class="tick"><div class="dot"></div><div class="wk">WK 8</div></div>
+      <div class="tick marker"><div class="dot"></div><div class="wk">WK 9</div><div class="tag">Event · rescan if possible</div></div>
+    </div>
+    <div class="card" style="margin-top:24px;">
+      <h3>Milestone Rewards</h3>
+      <div class="table-scroll"><table>
+        <tr><th>Checkpoint</th><th>Suggested reward</th></tr>
+        <tr><td class="mono">Wk 3</td><td>Something small and immediate - a new workout playlist, a cute gym accessory, or a solo night off to watch whatever you want.</td></tr>
+        <tr><td class="mono">Wk 5-6</td><td>A bit bigger, since this is where body comp changes usually start showing - a massage, a new workout outfit, or new sneakers.</td></tr>
+        <tr><td class="mono">Wk 9 · Event</td><td>The big one - an outfit for the event itself, or an experience (not food-based) that marks finishing what you started. Also: get the rescan. Seeing the number move is its own reward.</td></tr>
+      </table></div>
+      <p style="margin-top:12px;font-size:12.5px;color:var(--ink-soft);">These are starting suggestions - swap in whatever actually motivates you. The only rule: non-food, and something you wouldn't otherwise just buy yourself.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card" style="background:var(--bodypump-bg);border-color:var(--bodypump);">
+      <h3 style="color:var(--bodypump);">The One Rule: Never Miss Twice</h3>
+      <p>Missing a single session is noise - it happens, it doesn't matter. Missing two in a row is how a first attempt quietly falls apart. If you skip a day, the only job the next day has is to not be skipped too. Everything else on this page is flexible. This rule isn't.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="block-label">Part 2 — The Weekly Block</p>
+    <div class="week">
+
+      <div class="day walk">
+        <div><div class="dname">Monday</div><div class="ddate">Day 1</div></div>
+        <div>
+          <div class="dtype">Strength + Walk</div>
+          <div class="row"><span class="k">Strength</span><span class="v">Lower Body &amp; Core</span></div>
+          <div class="row"><span class="k">Steps</span><span class="v">8,000-10,000</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 2 · 112-131 bpm</span></div>
+          <p style="font-size:11.5px;color:var(--ink-soft);font-style:italic;margin-top:6px;">Do the strength block first, walk after - keeps lifting form sharp before fatigue sets in.</p>
+          <div class="yt-field">
+            <label>Video options</label>
+            <ul class="yt-options">
+              <li class="yt-opt"><span class="optnum">OPT 1</span><a href="https://www.youtube.com/watch?v=FeUGuTwg_7U" target="_blank">20 Min Lower Body &amp; Abs</a><span class="note">Default. Baseline pace, good starting point weeks 1-4.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 2</span><a href="https://www.youtube.com/watch?v=ll3UVQDsHas" target="_blank">25 Min Lower Body Workout</a><span class="note">More volume. Move here once Opt 1 feels easy.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 3</span><a href="https://www.youtube.com/watch?v=Zkf92N_lkTU" target="_blank">25 Min Glute/Booty [Advanced]</a><span class="note">Heavier glute focus. Save for week 5+.</span></li>
+            </ul>
+            <p class="yt-backups">Also available: <a href="https://www.youtube.com/watch?v=4inrUeRQMlg" target="_blank">25 Min Leg Day</a>, <a href="https://www.youtube.com/watch?v=epwH9RSQV6M" target="_blank">30 Min Legs &amp; Abs Heavy</a>, <a href="https://www.youtube.com/watch?v=XfZyr5YzFQk" target="_blank">15 Min Quad</a>.</p>
+          </div>
+          <details>
+            <summary>No-video exercise fallback &#9656; 20-25 min, straight sets</summary>
+            <ul class="exlist">
+              <li><strong>Squats</strong> - 3 x 12</li>
+              <li><strong>Glute bridges</strong> - 3 x 15</li>
+              <li><strong>Plank</strong> - 3 x 30-45 sec</li>
+              <li><strong>Dead bug</strong> - 3 x 10 per side</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="day bodypump">
+        <div><div class="dname">Tuesday</div><div class="ddate">Day 2</div></div>
+        <div>
+          <div class="dtype">Full-Body Strength</div>
+          <div class="row"><span class="k">Duration</span><span class="v">~60 min</span></div>
+          <div class="row"><span class="k">Walk after</span><span class="v">6,000-8,000 steps</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 1 · 94-112 bpm</span></div>
+          <div class="yt-field">
+            <label>Video options</label>
+            <ul class="yt-options">
+              <li class="yt-opt"><span class="optnum">OPT 1</span><a href="https://www.youtube.com/watch?v=UAw3YLDLMHo" target="_blank">60 Min Full Body Strength</a><span class="note">Default. Steady pace throughout, closest to your old Body Pump length.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 2</span><a href="https://www.youtube.com/watch?v=rWearms3rFY" target="_blank">60 Min Full Body Strength (Alt)</a><span class="note">Same format, different exercise order. Rotate in so Tue/Thu aren't identical.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 3</span><a href="https://www.youtube.com/watch?v=B7-F2UcHmqk" target="_blank">60 Min Full Body [Audio Cues]</a><span class="note">Cued by audio, not visual demo. Good if you'd rather listen than watch closely.</span></li>
+            </ul>
+            <p class="yt-backups">If 60 min doesn't fit a given week: <a href="https://www.youtube.com/watch?v=I0o2ebpegys" target="_blank">30 Min Tempo</a> or <a href="https://www.youtube.com/watch?v=ls4Vqk1t_lc" target="_blank">30 Min Heavy [+Abs]</a> standalone, or pair the two for ~50 min.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="day walk">
+        <div><div class="dname">Wednesday</div><div class="ddate">Day 3</div></div>
+        <div>
+          <div class="dtype">Strength + Walk</div>
+          <div class="row"><span class="k">Strength</span><span class="v">Upper Body &amp; Core</span></div>
+          <div class="row"><span class="k">Steps</span><span class="v">8,000-10,000</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 2 · 112-131 bpm</span></div>
+          <p style="font-size:11.5px;color:var(--ink-soft);font-style:italic;margin-top:6px;">Do the strength block first, walk after - keeps lifting form sharp before fatigue sets in.</p>
+          <p style="font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:8px;">Kept light - Tuesday/Thursday already cover upper-body volume twice a week. This is insurance, not the main event.</p>
+          <div class="yt-field">
+            <label>Video options</label>
+            <ul class="yt-options">
+              <li class="yt-opt"><span class="optnum">OPT 1</span><a href="https://www.youtube.com/watch?v=70ZXlsrlwfc" target="_blank">20 Min Arms &amp; Abs [No Repeat]</a><span class="note">Default. Balanced arms and core.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 2</span><a href="https://www.youtube.com/watch?v=sAhnS8sQJkA" target="_blank">25 Min Upper Body Workout</a><span class="note">More upper-body volume, less core focus.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 3</span><a href="https://www.youtube.com/watch?v=j-Wbu2HVU9A" target="_blank">15 Min Back &amp; Biceps</a><span class="note">Shortest. Good on a week that's already felt heavy.</span></li>
+            </ul>
+            <p class="yt-backups">Also available: <a href="https://www.youtube.com/watch?v=RWgdQVRkz2c" target="_blank">25 Min Upper Body Strength</a>, <a href="https://www.youtube.com/watch?v=4m_aYuPPobU" target="_blank">20 Min Shoulders &amp; Chest</a>, <a href="https://www.youtube.com/watch?v=ErEB-lGb1X8" target="_blank">30 Min Arms &amp; Abs</a>.</p>
+          </div>
+          <details>
+            <summary>No-video exercise fallback &#9656; 20-25 min, straight sets</summary>
+            <ul class="exlist">
+              <li><strong>Dumbbell rows</strong> - 3 x 12</li>
+              <li><strong>Incline push-ups</strong> - 3 x 10-12</li>
+              <li><strong>Overhead press</strong> - 3 x 10</li>
+              <li><strong>Side plank</strong> - 3 x 20-30 sec per side</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="day bodypump">
+        <div><div class="dname">Thursday</div><div class="ddate">Day 4</div></div>
+        <div>
+          <div class="dtype">Full-Body Strength</div>
+          <div class="row"><span class="k">Duration</span><span class="v">~60 min</span></div>
+          <div class="row"><span class="k">Walk after</span><span class="v">6,000-8,000 steps</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 1 · 94-112 bpm</span></div>
+          <div class="yt-field">
+            <label>Video options</label>
+            <ul class="yt-options">
+              <li class="yt-opt"><span class="optnum">OPT 1</span><a href="https://www.youtube.com/watch?v=UAw3YLDLMHo" target="_blank">60 Min Full Body Strength</a><span class="note">Same three options as Tuesday.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 2</span><a href="https://www.youtube.com/watch?v=rWearms3rFY" target="_blank">60 Min Full Body Strength (Alt)</a><span class="note">Default here, so Tue/Thu aren't identical.</span></li>
+              <li class="yt-opt"><span class="optnum">OPT 3</span><a href="https://www.youtube.com/watch?v=B7-F2UcHmqk" target="_blank">60 Min Full Body [Audio Cues]</a><span class="note">Cued by audio, not visual demo.</span></li>
+            </ul>
+            <p class="yt-backups">Same backups as Tuesday: <a href="https://www.youtube.com/watch?v=I0o2ebpegys" target="_blank">30 Min Tempo</a>, <a href="https://www.youtube.com/watch?v=ls4Vqk1t_lc" target="_blank">30 Min Heavy [+Abs]</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="day walk">
+        <div><div class="dname">Friday</div><div class="ddate">Day 5</div></div>
+        <div>
+          <div class="dtype">Walk Only</div>
+          <div class="row"><span class="k">Steps</span><span class="v">8,000-10,000</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 2 · 112-131 bpm</span></div>
+          <p style="font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:8px;">Pure recovery - no strength add-on. Clears the legs before Saturday's push day.</p>
+        </div>
+      </div>
+
+      <div class="day spin">
+        <div><div class="dname">Saturday</div><div class="ddate">Day 6</div></div>
+        <div>
+          <div class="dtype">Spin - Push Day</div>
+          <div class="row"><span class="k">Duration</span><span class="v">60 min</span></div>
+          <div class="row"><span class="k">Zone</span><span class="v">Zone 3-4 · 131-168 bpm</span></div>
+          <p style="font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:8px;">The one day to genuinely push out of comfort zone.</p>
+        </div>
+      </div>
+
+      <div class="day rest">
+        <div><div class="dname">Sunday</div><div class="ddate">Day 7</div></div>
+        <div>
+          <div class="dtype">Rest</div>
+          <p style="font-size:13px;margin-top:2px;">Full recovery. Optional easy walk if you want to move - no step or zone target, no obligation.</p>
+          <p style="font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:8px;">If you want something low-key: <a href="https://www.youtube.com/watch?v=1tLFG1t8MJo" target="_blank" style="color:var(--rest);font-weight:600;">10 Min Full Body Stretch &amp; Mobility</a>. Entirely optional.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="block-label">How This Block Progresses</p>
+    <div class="card">
+      <div class="table-scroll"><table>
+        <tr><th>Phase</th><th>Stays the same</th><th>What changes</th></tr>
+        <tr>
+          <td class="mono">Wk 1-2<br>Foundation</td>
+          <td>Full weekly structure as laid out above</td>
+          <td>Tue/Thu: rotate through the three 60-min options. Just building the habit. Loose food logging to calibrate 1,800 kcal.</td>
+        </tr>
+        <tr>
+          <td class="mono">Wk 3-4<br>First Read</td>
+          <td>Same schedule</td>
+          <td>Check the weight trend at wk 3. Flat or up &#8594; tighten by 150-200 kcal. On track &#8594; hold. Keep rotating Tue/Thu options.</td>
+        </tr>
+        <tr>
+          <td class="mono">Wk 5-6<br>Load Up</td>
+          <td>Same days, same structure</td>
+          <td>Tue/Thu: increase dumbbell weight within these sessions. Mon: move to <a href="https://www.youtube.com/watch?v=ll3UVQDsHas" target="_blank">Opt 2, 25 Min Lower Body</a>. Re-check RHR and waist.</td>
+        </tr>
+        <tr>
+          <td class="mono">Wk 7-8<br>Sharpen</td>
+          <td>Same schedule</td>
+          <td>Continue the 60-min rotation, heavier weight. If progress has stalled, tighten calories OR add load - not both at once.</td>
+        </tr>
+        <tr>
+          <td class="mono">Wk 9<br>Event Week</td>
+          <td>Keep Tue/Thu strength + spin as normal early in the week</td>
+          <td>Taper: switch Tue/Thu to the <a href="https://www.youtube.com/watch?v=I0o2ebpegys" target="_blank">30 Min Tempo</a> standalone - shorter, lighter. Prioritize sleep and hydration. No new intensity this week.</td>
+        </tr>
+      </table></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="block-label">Track Your Streak</p>
+
+    <div id="streak-card" class="card">
+      <p style="margin-bottom:16px;">Check off each day you complete your planned session (strength, spin, or a deliberate walk). One box per day, 9 weeks across.</p>
+      <div class="streak-stats">
+        <div class="streak-stat"><div class="sn" id="current-streak">0</div><div class="sl">Current Streak</div></div>
+        <div class="streak-stat"><div class="sn" id="total-logged">0</div><div class="sl">Total Days Logged</div></div>
+      </div>
+      <div id="streak-grid" class="streak-grid"></div>
+      <p id="sync-status" style="margin-top:14px;font-size:11.5px;color:var(--ink-soft);">Synced via Firebase - same data on any device, no login needed.</p>
+    </div>
+
+  </section>
+
+  <footer>v8 · Built from DEXA (1/11/26), 3D scan, RMR &amp; TDEE reports · Firebase-synced streak tracker, mobile-optimized</footer>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+
+// ============================================================
+// PASTE YOUR FIREBASE CONFIG BELOW (from Firebase Console >
+// Project Settings > General > Your apps > SDK setup and config)
+// ============================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyBiQRGbKeqn1sjhdObziu8XHQXs1l8O70U",
+  authDomain: "workout-70447.firebaseapp.com",
+  projectId: "workout-70447",
+  storageBucket: "workout-70447.firebasestorage.app",
+  messagingSenderId: "553114393380",
+  appId: "1:553114393380:web:ca29a088f867049f93f1b1"
+};
+// ============================================================
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Fixed document - no login needed since this is single-user.
+// Firestore rule must allow open read/write to this exact path.
+const STREAK_DOC = doc(db, 'streaks', 'my-streak');
+const CACHE_KEY = 'streak-cache-my-streak';
+
+const WEEKS = 9, DAYS = 7, TOTAL = WEEKS * DAYS;
+const dayLabels = ['M','T','W','T','F','S','S'];
+let boxes = [];
+
+function buildGrid(){
+  const grid = document.getElementById('streak-grid');
+  grid.innerHTML = '';
+  boxes = [];
+  for(let w=0; w<WEEKS; w++){
+    const row = document.createElement('div');
+    row.className = 'streak-row';
+    const wkLabel = document.createElement('div');
+    wkLabel.className = 'streak-wklabel';
+    wkLabel.textContent = 'WK ' + (w+1);
+    row.appendChild(wkLabel);
+    for(let d=0; d<DAYS; d++){
+      const idx = w*DAYS + d;
+      const box = document.createElement('div');
+      box.className = 'streak-box';
+      box.textContent = dayLabels[d];
+      box.dataset.idx = idx;
+      box.addEventListener('click', () => toggleBox(idx));
+      row.appendChild(box);
+      boxes.push(box);
+    }
+    grid.appendChild(row);
+  }
+}
+
+function renderState(state){
+  boxes.forEach((box, i) => box.classList.toggle('checked', !!state[i]));
+  updateStats(state);
+}
+
+function updateStats(state){
+  let total = 0;
+  for(let i=0;i<TOTAL;i++){ if(state[i]) total++; }
+  let lastChecked = -1;
+  for(let i=TOTAL-1;i>=0;i--){ if(state[i]){ lastChecked = i; break; } }
+  let streak = 0;
+  if(lastChecked !== -1){
+    for(let j=lastChecked;j>=0;j--){ if(state[j]) streak++; else break; }
+  }
+  document.getElementById('current-streak').textContent = streak;
+  document.getElementById('total-logged').textContent = total;
+}
+
+async function toggleBox(idx){
+  const box = boxes[idx];
+  const nowChecked = !box.classList.contains('checked');
+  box.classList.toggle('checked', nowChecked);
+  const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+  cached[idx] = nowChecked;
+  localStorage.setItem(CACHE_KEY, JSON.stringify(cached));
+  updateStats(cached);
+  try {
+    await setDoc(STREAK_DOC, cached, { merge: true });
+  } catch(e){
+    console.error('Sync failed, saved locally only for now:', e);
+    document.getElementById('sync-status').textContent = 'Could not sync - saved on this device only for now.';
+  }
+}
+
+async function loadState(){
+  let state = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}');
+  try {
+    const snap = await getDoc(STREAK_DOC);
+    if(snap.exists()){
+      state = snap.data();
+      localStorage.setItem(CACHE_KEY, JSON.stringify(state));
+    }
+  } catch(e){
+    console.error('Could not reach Firestore, showing local cache:', e);
+    document.getElementById('sync-status').textContent = 'Offline - showing last synced data.';
+  }
+  renderState(state);
+}
+
+buildGrid();
+loadState();
+</script>
+</body>
+</html>
+</body>
+</html>
